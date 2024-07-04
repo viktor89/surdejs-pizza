@@ -31,14 +31,16 @@ function App() {
     <MantineProvider theme={theme}>
       <Container>
         <Title order={1}>Surdejspizza</Title>
-        <Flex gap={30}>
+        <Flex gap="md" wrap="wrap">
           <NumberInput
+            style={{ width: "100%", maxWidth: "370px" }}
             label="Antal Pizza"
             suffix=" stk"
             min={1}
             {...form.getInputProps("amount")}
           />
           <NumberInput
+            style={{ width: "100%", maxWidth: "370px" }}
             label="Vægt"
             placeholder="Vægt pr. stk."
             step={10}
@@ -46,6 +48,7 @@ function App() {
             {...form.getInputProps("weight")}
           />
           <NumberInput
+            style={{ width: "100%", maxWidth: "370px" }}
             label="Hydration"
             placeholder=""
             step={1}
@@ -54,6 +57,7 @@ function App() {
             {...form.getInputProps("hydration")}
           />
           <NumberInput
+            style={{ width: "100%", maxWidth: "370px" }}
             label="Surdej %"
             placeholder=""
             step={1}
@@ -62,6 +66,7 @@ function App() {
             {...form.getInputProps("surdej")}
           />
           <NumberInput
+            style={{ width: "100%", maxWidth: "370px" }}
             label="Salt"
             placeholder=""
             step={0.1}
