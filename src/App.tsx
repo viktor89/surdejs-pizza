@@ -6,6 +6,7 @@ import {
   Flex,
   NumberInput,
   Text,
+  Space,
 } from "@mantine/core";
 import { useForm } from "@mantine/form";
 
@@ -29,7 +30,7 @@ function App() {
 
   return (
     <MantineProvider theme={theme}>
-      <Container>
+      <Container size="sm">
         <Title order={1}>Surdejspizza</Title>
         <Flex gap="md" wrap="wrap">
           <NumberInput
@@ -74,29 +75,48 @@ function App() {
             {...form.getInputProps("salt")}
           />
         </Flex>
+      </Container>
+
+      <Space h="xl" />
+
+      <Container size="sm">
         <Title order={2}>Ingredienser</Title>
-        <Text>Totalvægt: {Totalvægt} gr</Text>
-        <Text>
-          Mel:{" "}
-          {Math.round(Totalvægt * (mel / (mel + surdej + hydration + salt)))} gr
-        </Text>
-        <Text>
-          Vand:{" "}
-          {Math.round(
-            Totalvægt * (hydration / (mel + surdej + hydration + salt))
-          )}{" "}
-          gr
-        </Text>
-        <Text>
-          Aktiv Surdej:{" "}
-          {Math.round(Totalvægt * (surdej / (mel + surdej + hydration + salt)))}{" "}
-          gr
-        </Text>
-        <Text>
-          Salt:{" "}
-          {Math.round(Totalvægt * (salt / (mel + surdej + hydration + salt)))}{" "}
-          gr
-        </Text>
+        <Flex justify={"space-between"}>
+          <Text>Totalvægt: </Text>
+          <Text>{Totalvægt} gr</Text>
+        </Flex>
+        <Flex justify={"space-between"}>
+          <Text>Mel: </Text>
+          <Text>
+            {Math.round(Totalvægt * (mel / (mel + surdej + hydration + salt)))}{" "}
+            gr
+          </Text>
+        </Flex>
+        <Flex justify={"space-between"}>
+          <Text>Vand: </Text>
+          <Text>
+            {Math.round(
+              Totalvægt * (hydration / (mel + surdej + hydration + salt))
+            )}{" "}
+            gr
+          </Text>
+        </Flex>
+        <Flex justify={"space-between"}>
+          <Text>Aktiv Surdej: </Text>
+          <Text>
+            {Math.round(
+              Totalvægt * (surdej / (mel + surdej + hydration + salt))
+            )}{" "}
+            gr
+          </Text>
+        </Flex>
+        <Flex justify={"space-between"}>
+          <Text>Salt: </Text>
+          <Text>
+            {Math.round(Totalvægt * (salt / (mel + surdej + hydration + salt)))}{" "}
+            gr
+          </Text>
+        </Flex>
       </Container>
     </MantineProvider>
   );
