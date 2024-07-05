@@ -7,8 +7,12 @@ import {
   NumberInput,
   Text,
   Space,
+  Grid,
+  Timeline,
+  ActionIcon,
 } from "@mantine/core";
 import { useForm } from "@mantine/form";
+import { IconDeviceFloppy } from "@tabler/icons-react";
 
 const theme = createTheme({});
 
@@ -30,56 +34,62 @@ function App() {
 
   return (
     <MantineProvider theme={theme}>
-      <Container size="sm">
+      <Container size="sm" style={{ position: "relative", minHeight: "100vh" }}>
         <Title order={1}>Surdejspizza</Title>
-        <Flex gap="md" wrap="wrap">
-          <NumberInput
-            style={{ width: "100%", maxWidth: "370px" }}
-            label="Antal Pizza"
-            suffix=" stk"
-            min={1}
-            {...form.getInputProps("amount")}
-          />
-          <NumberInput
-            style={{ width: "100%", maxWidth: "370px" }}
-            label="Vægt"
-            placeholder="Vægt pr. stk."
-            step={10}
-            suffix=" gr"
-            {...form.getInputProps("weight")}
-          />
-          <NumberInput
-            style={{ width: "100%", maxWidth: "370px" }}
-            label="Hydration"
-            placeholder=""
-            step={1}
-            suffix=" %"
-            min={50}
-            {...form.getInputProps("hydration")}
-          />
-          <NumberInput
-            style={{ width: "100%", maxWidth: "370px" }}
-            label="Surdej %"
-            placeholder=""
-            step={1}
-            suffix=" %"
-            min={10}
-            {...form.getInputProps("surdej")}
-          />
-          <NumberInput
-            style={{ width: "100%", maxWidth: "370px" }}
-            label="Salt"
-            placeholder=""
-            step={0.1}
-            suffix=" %"
-            {...form.getInputProps("salt")}
-          />
-        </Flex>
-      </Container>
+        <Grid>
+          <Grid.Col span={6}>
+            <NumberInput
+              label="Antal Pizza"
+              suffix=" stk"
+              min={1}
+              {...form.getInputProps("amount")}
+            />
+          </Grid.Col>
+          <Grid.Col span={6}>
+            <NumberInput
+              label="Vægt"
+              placeholder="Vægt pr. stk."
+              step={10}
+              suffix=" gr"
+              {...form.getInputProps("weight")}
+            />{" "}
+          </Grid.Col>
 
-      <Space h="xl" />
+          <Grid.Col span={6}>
+            <NumberInput
+              label="Hydration"
+              placeholder=""
+              step={1}
+              suffix=" %"
+              min={50}
+              {...form.getInputProps("hydration")}
+            />{" "}
+          </Grid.Col>
 
-      <Container size="sm">
+          <Grid.Col span={6}>
+            <NumberInput
+              label="Surdej %"
+              placeholder=""
+              step={1}
+              suffix=" %"
+              min={10}
+              {...form.getInputProps("surdej")}
+            />{" "}
+          </Grid.Col>
+
+          <Grid.Col span={6}>
+            <NumberInput
+              label="Salt"
+              placeholder=""
+              step={0.1}
+              suffix=" %"
+              {...form.getInputProps("salt")}
+            />{" "}
+          </Grid.Col>
+        </Grid>
+
+        <Space h="xl" />
+
         <Title order={2}>Ingredienser</Title>
         <Flex justify={"space-between"}>
           <Text>Totalvægt: </Text>
@@ -117,6 +127,45 @@ function App() {
             gr
           </Text>
         </Flex>
+
+        <Space h="xl" />
+
+        <Title order={2}>Instrukser</Title>
+        <Space h="md" />
+        <Timeline>
+          <Timeline.Item title="New branch">
+            <Text c="dimmed" size="sm">
+              You&apos;ve created new branch{" "}
+              <Text variant="link" component="span" inherit>
+                fix-notifications
+              </Text>{" "}
+              from master
+            </Text>
+            <Text size="xs" mt={4}>
+              2 hours ago
+            </Text>
+          </Timeline.Item>
+          <Timeline.Item title="Commits">
+            <Text c="dimmed" size="sm">
+              You&apos;ve pushed 23 commits to
+              <Text variant="link" component="span" inherit>
+                fix-notifications branch
+              </Text>
+            </Text>
+            <Text size="xs" mt={4}>
+              52 minutes ago
+            </Text>
+          </Timeline.Item>
+        </Timeline>
+        <ActionIcon
+          style={{ position: "absolute", right: 20, bottom: 20 }}
+          variant="gradient"
+          size="xl"
+          aria-label="Save presets"
+          gradient={{ from: "blue", to: "cyan", deg: 90 }}
+        >
+          <IconDeviceFloppy />
+        </ActionIcon>
       </Container>
     </MantineProvider>
   );
