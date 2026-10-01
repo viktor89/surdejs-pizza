@@ -1,12 +1,18 @@
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react-swc";
+import { defineConfig } from "vite"
+import { tanstackStart } from "@tanstack/react-start/plugin/vite"
+import viteReact from "@vitejs/plugin-react"
+import tailwindcss from "@tailwindcss/vite"
 
-// https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
-  build: {
-    outDir: "build",
-    emptyOutDir: true,
-  },
-  base: "/surdejs-pizza",
-});
+  // GitHub Pages serves the site from /surdejs-pizza/
+  base: "/surdejs-pizza/",
+  resolve: { tsconfigPaths: true },
+  plugins: [
+    tailwindcss(),
+    tanstackStart({
+      // Static SPA shell written to dist/client/index.html for GitHub Pages
+      spa: { enabled: true, prerender: { outputPath: "/index" } },
+    }),
+    viteReact(),
+  ],
+})
